@@ -1,0 +1,10 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "conf and make",
+            "command": "g++ main.cpp -o simulateNS"
+        }
+    ],
+}
