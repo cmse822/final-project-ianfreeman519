@@ -116,10 +116,14 @@ int main() {
      * Read data from directory into arrays to use in program
      * This uses the 
     **************************************************************************/
+    std::cout << std::setprecision(2);
+    std::cout << std::scientific;
 
     // Read 2D data from CSV files
     auto u = readCsv(directory_name + "/u.csv");
     auto v = readCsv(directory_name + "/v.csv");
+    auto u_new = readCsv(directory_name + "/u.csv");
+    auto v_new = readCsv(directory_name + "/v.csv");
     auto p = readCsv(directory_name + "/p.csv");
     auto gx = readCsv(directory_name + "/gx.csv");
     auto gy = readCsv(directory_name + "/gy.csv");
@@ -154,7 +158,8 @@ int main() {
      * Fields have been initialized, so now we get to start the iteration! :(
     **************************************************************************/        
     // Naively, I need to store different terms of the updating scheme in different variables
-    double t1, t2, t3, t4, t5;
+    double ut1, ut2, ut3, ut4, ut5;
+    double vt1, vt2, vt3, vt4, vt5;
     double invRe;
 
     // time - to be iterated
@@ -173,27 +178,32 @@ int main() {
         // along interior x points
         for (int i=NG; i<Nx+NG; i++){
             // y=0, along interior x points
-            for (int j=0; j<NG; j++) u[i][j] = u[i][NG];
+            for (int j=0; j<NG; j++) {
+                u[i][j] = u[i][NG];
+                v[i][j] = v[i][NG];
+                std::cout << "1 i=" << i << " | j=" << j << " | u[i][j]=" << u[i][j] << " | v[i][j]=" << v[i][j] << std::endl;
+            }
             // y=ymax, along interior x points
-            for (int j=Ny+NG; j<Ny+2*NG; j++) u[i][j] = u[i][Ny+NG];
+            for (int j=Ny+NG; j<Ny+2*NG; j++) {
+                u[i][j] = u[i][Ny+NG-1];
+                v[i][j] = v[i][Ny+NG-1];
+                std::cout << "2 i=" << i << " | j=" << j << " | u[i][j]=" << u[i][j] << " | v[i][j]=" << v[i][j] << std::endl;
+            }
         }
         // along all y points - can handle
         for (int j=0; j<Ny+2*NG; j++) {
-            for (int i=0; i<NG; i++) u[i][j] = u[NG][j];
-            for (int i=Nx+NG; i<Nx+2*NG; i++) u[i][j] = u[Nx+NG][j];
-        }
-        // Repeating for v
-        // along interior x points
-        for (int i=NG; i<Nx+NG; i++){
-            // y=0, along interior x points
-            for (int j=0; j<NG; j++) v[i][j] = v[i][NG];
-            // y=ymax, along interior x points
-            for (int j=Ny+NG; j<Ny+2*NG; j++) v[i][j] = v[i][Ny+NG];
-        }
-        // along all y points - can handle
-        for (int j=0; j<Ny+2*NG; j++) {
-            for (int i=0; i<NG; i++) v[i][j] = v[NG][j];
-            for (int i=Nx+NG; i<Nx+2*NG; i++) v[i][j] = v[Nx+NG][j];
+            // x = 0, along ALL y points
+            for (int i=0; i<NG; i++) {
+                u[i][j] = u[NG][j]; 
+                v[i][j] = v[NG][j];
+                std::cout << "3 i=" << i << " | j=" << j << " | u[i][j]=" << u[i][j] << " | v[i][j]=" << v[i][j] << std::endl;
+            }
+            // x = max, along ALL y points
+            for (int i=Nx+NG; i<Nx+2*NG; i++) {
+                u[i][j] = u[Nx+NG-1][j];
+                v[i][j] = v[Nx+NG-1][j];
+                std::cout << "4 i=" << i << " | j=" << j << " | u[i][j]=" << u[i][j] << " | v[i][j]=" << v[i][j] << std::endl;
+            }
         }
 
         // Actual iteration
@@ -211,50 +221,58 @@ int main() {
                 s = u[i][j] >= 0 ? 1 : -1;
                 std::cout << " | us=" << s;
                 // dpdx
-                t1 = s/(2*dx)*(3*p[i][j] - 4*p[i-1*s][j] + p[i-2*s][j]);
-                std::cout << " | ut1=" << t1;
+                ut1 = s/(2*dx)*(3*p[i][j] - 4*p[i-1*s][j] + p[i-2*s][j]);
+                std::cout << " | ut1=" << ut1;
                 // d2udx2
-                t2 = 1/(dx*dx) * (u[i][j] - 2*u[i+1*s][j] + u[i+2*s][j]);
-                std::cout << " | ut2=" << t2;
+                ut2 = 1/(dx*dx) * (u[i][j] - 2*u[i-1*s][j] + u[i-2*s][j]);
+                std::cout << " | ut2=" << ut2;
                 // d2udy2
-                t3 = 1/(dy*dy) * (u[i][j] - 2*u[i][j+1*s] + u[i][j+2*s]);
-                std::cout << " | ut3=" << t3;
+                ut3 = 1/(dy*dy) * (u[i][j] - 2*u[i][j-1*s] + u[i][j-2*s]);
+                std::cout << " | ut3=" << ut3;
                 // d(u2)dx
-                t4 = s/(2*dx)*(3*u[i][j]*u[i][j] - 4*u[i-1*s][j]*u[i-1*s][j] + u[i-2*s][j]*u[i-2*s][j]);
-                std::cout << " | ut4=" << t4;
+                ut4 = s/(2*dx)*(3*u[i][j]*u[i][j] - 4*u[i-1*s][j]*u[i-1*s][j] + u[i-2*s][j]*u[i-2*s][j]);
+                std::cout << " | ut4=" << ut4;
                 // d(uv)dy
-                t5 = s/(2*dy)*(3*u[i][j]*v[i][j] - 4*u[i][j-1*s]*v[i][j-1*s] + u[i][j-2*s]*v[i][j-2*s]);
-                std::cout << " | ut5=" << t5;
+                ut5 = s/(2*dy)*(3*u[i][j]*v[i][j] - 4*u[i][j-1*s]*v[i][j-1*s] + u[i][j-2*s]*v[i][j-2*s]);
+                std::cout << " | ut5=" << ut5;
 
-                // Updating u
-                u[i][j] = u[i][j] + dt*(-t1 + invRe*(t2 + t3) - t4 - t5) + gx[i][j];
 
                 // Defining an 's' to represent the sign of velocity
                 s = v[i][j] >= 0 ? 1 : -1;
                 std::cout << " | vs=" << s;
                 // dpdy
-                t1 = s/(2*dy)*(3*p[i][j] - 4*p[i][j-1*s] + p[i][j-2*s]);
-                std::cout << " | vt1=" << t1;
+                vt1 = s/(2*dy)*(3*p[i][j] - 4*p[i][j-1*s] + p[i][j-2*s]);
+                std::cout << " | vt1=" << vt1;
                 // d2vdx2
-                t2 = 1/(dx*dx) * (v[i][j] - 2*v[i+1*s][j] + v[i+2*s][j]);
-                std::cout << " | vt2=" << t2;
+                vt2 = 1/(dx*dx) * (v[i][j] - 2*v[i-1*s][j] + v[i-2*s][j]);
+                std::cout << " | vt2=" << vt2;
                 // d2vdy2
-                t3 = 1/(dy*dy) * (v[i][j] - 2*v[i][j+1*s] + v[i][j+2*s]);
-                std::cout << " | vt3=" << t3;
+                vt3 = 1/(dy*dy) * (v[i][j] - 2*v[i][j-1*s] + v[i][j-2*s]);
+                std::cout << " | vt3=" << vt3;
                 // d(uv)dx
-                t4 = s/(2*dx)*(3*u[i][j]*v[i][j] - 4*u[i-1*s][j]*v[i-1*s][j] + u[i-2*s][j]*v[i-2*s][j]);
-                std::cout << " | vt4=" << t4;
+                vt4 = s/(2*dx)*(3*u[i][j]*v[i][j] - 4*u[i-1*s][j]*v[i-1*s][j] + u[i-2*s][j]*v[i-2*s][j]);
+                std::cout << " | vt4=" << vt4;
                 // d(v2)dy
-                t5 = s/(2*dy)*(3*v[i][j]*v[i][j] - 4*v[i][j-1*s]*v[i][j-1*s] + v[i][j-2*s]*v[i][j-2*s]);
-                std::cout << " | vt5=" << t5;
+                vt5 = s/(2*dy)*(3*v[i][j]*v[i][j] - 4*v[i][j-1*s]*v[i][j-1*s] + v[i][j-2*s]*v[i][j-2*s]);
+                std::cout << " | vt5=" << vt5;
 
-                v[i][j] = v[i][j] + dt*(-t1 + invRe*(t2 + t3) - t4 - t5) + gy[i][j];
-                std::cout << " | u=" << u[i][j] << " | v=" << v[i][j] << std::endl; // TODOREMOVE
+                // Updating u and v
+                v_new[i][j] = v[i][j] + dt*(-vt1 + invRe*(vt2 + vt3) - vt4 - vt5) + gy[i][j];
+                u_new[i][j] = u[i][j] + dt*(-ut1 + invRe*(ut2 + ut3) - ut4 - ut5) + gx[i][j];
+                std::cout << " | u=" << u_new[i][j] << " | v=" << v_new[i][j] << std::endl; // TODOREMOVE
             }
         }
 
     // Update time
     t += dt; ti++;
+
+    // Updating the next time step's u and v before writing to file
+    for(int j=0; j<Ny+2*NG; j++) {
+        for(int i=0; i<Nx+2*NG; i++) {
+            u[i][j] = u_new[i][j];
+            v[i][j] = v_new[i][j];
+        }
+    }
 
     // Output to file
     writeToCsv(u, "output/u" + std::to_string(ti) + ".csv");
