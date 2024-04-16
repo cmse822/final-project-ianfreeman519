@@ -118,6 +118,7 @@ int main() {
     **************************************************************************/
     std::cout << std::setprecision(2);
     std::cout << std::scientific;
+    std::cout << "Starting Simulation" << std::endl << std::endl << std::endl << std::endl;
 
     // Read 2D data from CSV files
     auto u = readCsv(directory_name + "/u.csv");
@@ -181,13 +182,13 @@ int main() {
             for (int j=0; j<NG; j++) {
                 u[i][j] = u[i][NG];
                 v[i][j] = v[i][NG];
-                std::cout << "1 i=" << i << " | j=" << j << " | u[i][j]=" << u[i][j] << " | v[i][j]=" << v[i][j] << std::endl;
+                std::cout << "1 i=" << i << " | j=" << j << " | u=" << u[i][j] << " |      u[i][NG]=" << u[i][NG] << " | v=" << v[i][j] << " |      v[i][NG]=" << v[i][NG] << std::endl;
             }
             // y=ymax, along interior x points
             for (int j=Ny+NG; j<Ny+2*NG; j++) {
                 u[i][j] = u[i][Ny+NG-1];
                 v[i][j] = v[i][Ny+NG-1];
-                std::cout << "2 i=" << i << " | j=" << j << " | u[i][j]=" << u[i][j] << " | v[i][j]=" << v[i][j] << std::endl;
+                std::cout << "1 i=" << i << " | j=" << j << " | u=" << u[i][j] << " | u[i][Ny+NG-1]=" << u[i][Ny+NG-1] << " | v=" << v[i][j] << " | v[i][Ny+NG-1]=" << v[i][Ny+NG-1] << std::endl;
             }
         }
         // along all y points - can handle
@@ -196,13 +197,13 @@ int main() {
             for (int i=0; i<NG; i++) {
                 u[i][j] = u[NG][j]; 
                 v[i][j] = v[NG][j];
-                std::cout << "3 i=" << i << " | j=" << j << " | u[i][j]=" << u[i][j] << " | v[i][j]=" << v[i][j] << std::endl;
+                std::cout << "1 i=" << i << " | j=" << j << " | u=" << u[i][j] << " |      u[NG][j]=" << u[NG][j] << " | v=" << v[i][j] << " |      v[NG][j]=" << v[NG][j] << std::endl;
             }
             // x = max, along ALL y points
             for (int i=Nx+NG; i<Nx+2*NG; i++) {
                 u[i][j] = u[Nx+NG-1][j];
                 v[i][j] = v[Nx+NG-1][j];
-                std::cout << "4 i=" << i << " | j=" << j << " | u[i][j]=" << u[i][j] << " | v[i][j]=" << v[i][j] << std::endl;
+                std::cout << "1 i=" << i << " | j=" << j << " | u=" << u[i][j] << " | u[Nx+NG-1][j]=" << u[Nx+NG-1][j] << " | v=" << v[i][j] << " | v[Nx+NG-1][j]=" << v[Nx+NG-1][j] << std::endl;
             }
         }
 
