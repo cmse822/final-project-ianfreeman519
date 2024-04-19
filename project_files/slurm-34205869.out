@@ -1,0 +1,65 @@
+# Running code with OMP_NUM_THREADS= 1
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 2
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 4
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 6
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 8
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 10
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 12
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 14
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 16
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 18
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 20
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 22
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 24
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 26
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 28
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 30
+Simulating timestep 0 at time 0
+# Running code with OMP_NUM_THREADS= 32
+Simulating timestep 0 at time 0
+JobId=34205869 JobName=NSsim
+   UserId=freem386(6187794) GroupId=pa(2003) MCS_label=N/A
+   Priority=62303 Nice=0 Account=general QOS=freem386
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:02:05 TimeLimit=00:59:00 TimeMin=N/A
+   SubmitTime=2024-04-18T11:16:29 EligibleTime=2024-04-18T11:16:29
+   AccrueTime=2024-04-18T11:16:29
+   StartTime=2024-04-18T11:16:30 EndTime=2024-04-18T12:15:30 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-04-18T11:16:30 Scheduler=Main
+   Partition=general-short AllocNode:Sid=dev-intel18:2555
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=vim-002
+   BatchHost=vim-002
+   NumNodes=1 NumCPUs=32 NumTasks=1 CPUs/Task=32 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=32,mem=32G,node=1,billing=4980
+   AllocTRES=cpu=32,mem=32G,node=1,billing=4980
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=32 MinMemoryCPU=1G MinTmpDiskNode=0
+   Features=[intel14|intel16|intel18|(amr|acm)|nvf|nal|nif] DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/submission.sb
+   WorkDir=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files
+   Comment=stdout=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34205869.out 
+   StdErr=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34205869.out
+   StdIn=/dev/null
+   StdOut=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34205869.out
+   Power=
+   MailUser=freem386@msu.edu MailType=INVALID_DEPEND,BEGIN,END,FAIL,REQUEUE,STAGE_OUT
+   
+
