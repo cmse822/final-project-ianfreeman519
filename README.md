@@ -38,15 +38,15 @@ $$\frac{\partial v}{\partial x}|{xmin, xmax} = \frac{\partial v}{\partial y}|{xm
 This is true for all simulations in this project. Physically, this boundary condition indicates that the simulation domain is a small part of a larger body of water. This is implemented in the code by filling the ghost regions with copies of the nearest velocity values. This ensures the domain's edges are 'flat.' Other boundary conditions could be considered in the future, for example no-slip conditions (velocity perpendicular to surfaces is always 0), reflecting boundaries (the ghost regions are filled with 'mirror images' of neighboring cells, making the derivatives equal and opposite), or Dirichlet conditions (velocities at the boundaries are constant). While these other types of boundary conditions are interesting, the focus of this project is on parallel performance. Additionally, external forces are applied to many of the simulations. These are treated as constant background forces like gravity, or a 'constant wind' which shifts flow preferentially in one direction. These are static background fields that always act on the fluid flow. A time-dependent scheme could be implemented to drive turbulence, or perturb the fluid in numerous ways, but for simplicity, these time-dependent external forces were omitted from this project.
 
 ### *Finite Difference Stencil*
-The incompressible Navier-Stokes equations are vector equations, so it is natural to use an upwind Finite difference stencil. Let $w_k$ represent the value of a field at spatial cell center $z_k$ with uniform cell width $\Delta z$. The three-point, second-order accurate, one-sided stencils of first and second derivatives are: 
+The incompressible Navier-Stokes equations are vector equations, so it is natural to use an upwind Finite difference stencil. Let $w_k = w(k)$ (note this notation is sloppy, but necessary for GitHub to render LaTeX equations) represent the value of a field at spatial cell center $z_k$ with uniform cell width $\Delta z$. The three-point, second-order accurate, one-sided stencils of first and second derivatives are: 
 
 $$ (\frac{\partial w}{\partial z})_{k+} = \frac{1}{2 \Delta z} (3w(k) - 4w(k-1) + w(k-2)) $$
 
-$$ (\frac{\partial w}{\partial z})_{k-}=-\frac{1}{2 \Delta z} (3w(k) - 4w(k+1) + w_{k+2}) $$
+$$ (\frac{\partial w}{\partial z})_{k-}=-\frac{1}{2 \Delta z} (3w(k) - 4w(k+1) + w(k+2)) $$
 
-$$ (\frac{\partial^2w}{\partial z^2})_{k+}=\frac{1}{\Delta z^2} (w(k) - 2w_(k-1) + w_(k-2)) $$
+$$ (\frac{\partial^2w}{\partial z^2})_{k+}=\frac{1}{\Delta z^2} (w(k) - 2w_(k-1) + w(k-2)) $$
 
-$$ (\frac{\partial^2w}{\partial z^2})_{k-}=\frac{1}{\Delta z^2} (w(k) - 2w_(k+1) + w_(k+2)) $$
+$$ (\frac{\partial^2w}{\partial z^2})_{k-}=\frac{1}{\Delta z^2} (w(k) - 2w_(k+1) + w(k+2)) $$
 
 Upwind schemes require one-sided stencils. In theory, they stabilize the simulation in time, because 'information' travels along with velocity, and no 'information' from far upwind can reach any individual active cell. More specifically, if $w_k>0$, the positive stencils are used, and if $w_k<0$ the negative stencils are used. The above four equations can be described by two with the introduction of a new variable, $s=sgn(w_k)$. Note that these stencils are described here in 1D, but all fields and derivatives are 2D. Inside any individual cell, there are two signs calculated, one for the sign of velocity field in each Cartesian direction. This is especially important in simulations where vortices occur.
 
