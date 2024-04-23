@@ -1,0 +1,47 @@
+#!/bin/bash --login
+#SBATCH --time=00:20:00             # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --nodes=1                  # number of different nodes - could be an exact number or a range of nodes (same as -N)
+#SBATCH --ntasks=125                  # number of tasks - how many tasks (nodes) that you require (same as -n)
+#SBATCH --cpus-per-task=1           # number of CPUs (or cores) per task (same as -c)
+#SBATCH --mem-per-cpu=1G            # memory required per allocated CPU (or core) - amount of memory (in bytes)
+#SBATCH --job-name MPINS      # you can give your job a name for easier identification (same as -J)
+#SBATCH --mail-user=freem386@msu.edu   # lists the email address to which emails are sent, with options defined by --mail-type
+#SBATCH --mail-type=ALL             # let me know when jobs start, end, or fail.
+
+
+########## Command Lines to Run ##########
+source ~/.bashrc
+
+mpicxx mpi_main.cpp -o simulateNS_mpi
+mpiexec -n 4 ./simulateNS_mpi vortex500
+
+# for num in 1 2 4 5 10 20 25 50 100 125
+# do
+#     export OMP_NUM_THREADS=$num
+#     echo "# Running code with ranks=" $num
+#     mpiexec -n $num ./simulateNS_mpi vortex250
+# done
+
+# for num in 1 2 4 5 10 20 25 50 100 125
+# do
+#     export OMP_NUM_THREADS=$num
+#     echo "# Running code with ranks=" $num
+#     mpiexec -n $num ./simulateNS_mpi vortex500
+# done
+
+# for num in 1 2 4 5 10 20 25 50 100 125
+# do
+#     export OMP_NUM_THREADS=$num
+#     echo "# Running code with ranks=" $num
+#     mpiexec -n $num ./simulateNS_mpi vortex1000
+# done
+
+# for num in 1 2 4 5 10 20 25 50 100 125
+# do
+#     export OMP_NUM_THREADS=$num
+#     echo "# Running code with ranks=" $num
+#     mpiexec -n $num ./simulateNS_mpi vortex2000
+# done
+
+scontrol show job $SLURM_JOB_ID     ### write job information to output file
+

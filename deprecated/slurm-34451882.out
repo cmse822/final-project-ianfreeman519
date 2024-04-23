@@ -1,0 +1,183 @@
+Simulating timestep 0 at time 0
+Simulating timestep 10 at time 0.0001
+Simulating timestep 20 at time 0.0002
+Simulating timestep 30 at time 0.0003
+Simulating timestep 40 at time 0.0004
+Simulating timestep 50 at time 0.0005
+Simulating timestep 60 at time 0.0006
+Simulating timestep 70 at time 0.0007
+Simulating timestep 80 at time 0.0008
+Simulating timestep 90 at time 0.0009
+Simulating timestep 100 at time 0.001
+Simulating timestep 110 at time 0.0011
+Simulating timestep 120 at time 0.0012
+Simulating timestep 130 at time 0.0013
+Simulating timestep 140 at time 0.0014
+Simulating timestep 150 at time 0.0015
+Simulating timestep 160 at time 0.0016
+Simulating timestep 170 at time 0.0017
+Simulating timestep 180 at time 0.0018
+Simulating timestep 190 at time 0.0019
+Simulating timestep 200 at time 0.002
+Simulating timestep 210 at time 0.0021
+Simulating timestep 220 at time 0.0022
+Simulating timestep 230 at time 0.0023
+Simulating timestep 240 at time 0.0024
+Simulating timestep 250 at time 0.0025
+Simulating timestep 260 at time 0.0026
+Simulating timestep 270 at time 0.0027
+Simulating timestep 280 at time 0.0028
+Simulating timestep 290 at time 0.0029
+Simulating timestep 300 at time 0.003
+Simulating timestep 310 at time 0.0031
+Simulating timestep 320 at time 0.0032
+Simulating timestep 330 at time 0.0033
+Simulating timestep 340 at time 0.0034
+Simulating timestep 350 at time 0.0035
+Simulating timestep 360 at time 0.0036
+Simulating timestep 370 at time 0.0037
+Simulating timestep 380 at time 0.0038
+Simulating timestep 390 at time 0.0039
+Simulating timestep 400 at time 0.004
+Simulating timestep 410 at time 0.0041
+Simulating timestep 420 at time 0.0042
+Simulating timestep 430 at time 0.0043
+Simulating timestep 440 at time 0.0044
+Simulating timestep 450 at time 0.0045
+Simulating timestep 460 at time 0.0046
+Simulating timestep 470 at time 0.0047
+Simulating timestep 480 at time 0.0048
+Simulating timestep 490 at time 0.0049
+Simulating timestep 500 at time 0.005
+Simulating timestep 510 at time 0.0051
+Simulating timestep 520 at time 0.0052
+Simulating timestep 530 at time 0.0053
+Simulating timestep 540 at time 0.0054
+Simulating timestep 550 at time 0.0055
+Simulating timestep 560 at time 0.0056
+Simulating timestep 570 at time 0.0057
+Simulating timestep 580 at time 0.0058
+Simulating timestep 590 at time 0.0059
+Simulating timestep 600 at time 0.006
+Simulating timestep 610 at time 0.0061
+Simulating timestep 620 at time 0.0062
+Simulating timestep 630 at time 0.0063
+Simulating timestep 640 at time 0.0064
+Simulating timestep 650 at time 0.0065
+Simulating timestep 660 at time 0.0066
+Simulating timestep 670 at time 0.0067
+Simulating timestep 680 at time 0.0068
+Simulating timestep 690 at time 0.0069
+Simulating timestep 700 at time 0.007
+Simulating timestep 710 at time 0.0071
+Simulating timestep 720 at time 0.0072
+Simulating timestep 730 at time 0.0073
+Simulating timestep 740 at time 0.0074
+Simulating timestep 750 at time 0.0075
+Simulating timestep 760 at time 0.0076
+Simulating timestep 770 at time 0.0077
+Simulating timestep 780 at time 0.0078
+Simulating timestep 790 at time 0.0079
+Simulating timestep 800 at time 0.008
+Simulating timestep 810 at time 0.0081
+Simulating timestep 820 at time 0.0082
+Simulating timestep 830 at time 0.0083
+Simulating timestep 840 at time 0.0084
+Simulating timestep 850 at time 0.0085
+Simulating timestep 860 at time 0.0086
+Simulating timestep 870 at time 0.0087
+Simulating timestep 880 at time 0.0088
+Simulating timestep 890 at time 0.0089
+Simulating timestep 900 at time 0.009
+Simulating timestep 910 at time 0.0091
+Simulating timestep 920 at time 0.0092
+Simulating timestep 930 at time 0.0093
+Simulating timestep 940 at time 0.0094
+Simulating timestep 950 at time 0.0095
+Simulating timestep 960 at time 0.0096
+Simulating timestep 970 at time 0.0097
+Simulating timestep 980 at time 0.0098
+Simulating timestep 990 at time 0.0099
+Simulating timestep 1000 at time 0.01
+*** Error in `./simulateNS': malloc(): memory corruption: 0x000000000304b6c0 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x82b36)[0x2ac47fec6b36]
+/lib64/libc.so.6(__libc_malloc+0x4c)[0x2ac47fec978c]
+/lib64/libc.so.6(+0x6ec4d)[0x2ac47feb2c4d]
+/opt/software/GCCcore/9.3.0/lib64/libstdc++.so.6(_ZNSt12__basic_fileIcE4openEPKcSt13_Ios_Openmodei+0x30)[0x2ac47f9f1d70]
+/opt/software/GCCcore/9.3.0/lib64/libstdc++.so.6(_ZNSt13basic_filebufIcSt11char_traitsIcEE4openEPKcSt13_Ios_Openmode+0x3b)[0x2ac47fa3057b]
+/opt/software/GCCcore/9.3.0/lib64/libstdc++.so.6(_ZNSt14basic_ofstreamIcSt11char_traitsIcEEC1ERKNSt7__cxx1112basic_stringIcS1_SaIcEEESt13_Ios_Openmode+0xc4)[0x2ac47fa31254]
+./simulateNS[0x403e8c]
+./simulateNS[0x406bf9]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x2ac47fe66555]
+./simulateNS[0x403519]
+======= Memory map: ========
+00400000-00403000 r--p 00000000 00:2f 5133963266                         /mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/simulateNS
+00403000-0040d000 r-xp 00003000 00:2f 5133963266                         /mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/simulateNS
+0040d000-00412000 r--p 0000d000 00:2f 5133963266                         /mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/simulateNS
+00412000-00413000 r--p 00011000 00:2f 5133963266                         /mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/simulateNS
+00413000-00414000 rw-p 00012000 00:2f 5133963266                         /mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/simulateNS
+0226a000-03252000 rw-p 00000000 00:00 0                                  [heap]
+2ac47f8ff000-2ac47f921000 r-xp 00000000 fd:00 657451                     /usr/lib64/ld-2.17.so
+2ac47f921000-2ac47f923000 rw-p 00000000 00:00 0 
+2ac47f923000-2ac47f9c1000 r--p 00000000 00:2c 930352                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libstdc++.so.6.0.28
+2ac47f9c1000-2ac47faaa000 r-xp 0009e000 00:2c 930352                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libstdc++.so.6.0.28
+2ac47faaa000-2ac47faf4000 r--p 00187000 00:2c 930352                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libstdc++.so.6.0.28
+2ac47faf4000-2ac47faff000 r--p 001d0000 00:2c 930352                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libstdc++.so.6.0.28
+2ac47faff000-2ac47fb02000 rw-p 001db000 00:2c 930352                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libstdc++.so.6.0.28
+2ac47fb02000-2ac47fb05000 rw-p 00000000 00:00 0 
+2ac47fb05000-2ac47fb08000 r--p 00000000 00:2c 930359                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libgcc_s.so.1
+2ac47fb08000-2ac47fb19000 r-xp 00003000 00:2c 930359                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libgcc_s.so.1
+2ac47fb19000-2ac47fb1d000 r--p 00014000 00:2c 930359                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libgcc_s.so.1
+2ac47fb1d000-2ac47fb1e000 r--p 00017000 00:2c 930359                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libgcc_s.so.1
+2ac47fb1e000-2ac47fb1f000 rw-p 00018000 00:2c 930359                     /cvmfs/pub_software.icer.msu.edu/software/GCCcore/9.3.0/lib64/libgcc_s.so.1
+2ac47fb1f000-2ac47fb20000 rw-p 00000000 00:00 0 
+2ac47fb20000-2ac47fb21000 r--p 00021000 fd:00 657451                     /usr/lib64/ld-2.17.so
+2ac47fb21000-2ac47fb22000 rw-p 00022000 fd:00 657451                     /usr/lib64/ld-2.17.so
+2ac47fb22000-2ac47fb26000 rw-p 00000000 00:00 0 
+2ac47fb42000-2ac47fc43000 r-xp 00000000 fd:00 688485                     /usr/lib64/libm-2.17.so
+2ac47fc43000-2ac47fe42000 ---p 00101000 fd:00 688485                     /usr/lib64/libm-2.17.so
+2ac47fe42000-2ac47fe43000 r--p 00100000 fd:00 688485                     /usr/lib64/libm-2.17.so
+2ac47fe43000-2ac47fe44000 rw-p 00101000 fd:00 688485                     /usr/lib64/libm-2.17.so
+2ac47fe44000-2ac480008000 r-xp 00000000 fd:00 668892                     /usr/lib64/libc-2.17.so
+2ac480008000-2ac480207000 ---p 001c4000 fd:00 668892                     /usr/lib64/libc-2.17.so
+2ac480207000-2ac48020b000 r--p 001c3000 fd:00 668892                     /usr/lib64/libc-2.17.so
+2ac48020b000-2ac48020d000 rw-p 001c7000 fd:00 668892                     /usr/lib64/libc-2.17.so
+2ac48020d000-2ac480216000 rw-p 00000000 00:00 0 
+2ac484000000-2ac484021000 rw-p 00000000 00:00 0 
+2ac484021000-2ac488000000 ---p 00000000 00:00 0 
+7fffe3b83000-7fffe3ba9000 rw-p 00000000 00:00 0                          [stack]
+7fffe3bcb000-7fffe3bcd000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+/var/lib/slurmd/job34451882/slurm_script: line 17:  9981 Aborted                 (core dumped) ./simulateNS laminar500
+JobId=34451882 JobName=SERNS
+   UserId=freem386(6187794) GroupId=pa(2003) MCS_label=N/A
+   Priority=43431 Nice=0 Account=general QOS=freem386
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:03:27 TimeLimit=00:59:00 TimeMin=N/A
+   SubmitTime=2024-04-22T01:33:02 EligibleTime=2024-04-22T01:33:02
+   AccrueTime=2024-04-22T01:33:02
+   StartTime=2024-04-22T01:33:04 EndTime=2024-04-22T02:32:04 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-04-22T01:33:04 Scheduler=Main
+   Partition=general-short AllocNode:Sid=dev-intel18:26880
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=vim-002
+   BatchHost=vim-002
+   NumNodes=1 NumCPUs=32 NumTasks=1 CPUs/Task=32 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=32,mem=32G,node=1,billing=4980
+   AllocTRES=cpu=32,mem=32G,node=1,billing=4980
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=32 MinMemoryCPU=1G MinTmpDiskNode=0
+   Features=[intel14|intel16|intel18|(amr|acm)|nvf|nal|nif] DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/submission_serial.sb
+   WorkDir=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files
+   Comment=stdout=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34451882.out 
+   StdErr=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34451882.out
+   StdIn=/dev/null
+   StdOut=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34451882.out
+   Power=
+   MailUser=freem386@msu.edu MailType=INVALID_DEPEND,BEGIN,END,FAIL,REQUEUE,STAGE_OUT
+   
+
