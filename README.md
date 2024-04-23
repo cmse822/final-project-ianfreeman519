@@ -31,19 +31,19 @@ $$Re=\frac{\rho |\textbf{u}| L}{\mu}$$
 ### *Physical Parameters, Boundary conditions, and external fields*
 This project was meant to simulate water flow in a variety of different conditions. For this reason, the density of all fluids in the resulting simulations are held at a constant $\rho=1000kg/m^3$, and the absolute (dynamic) viscosity is always $\mu=10^{-3}Pas$ (*all units in this project are SI*). These constants are properties of water at $20^oC$. Because the Navier-Stokes equations model ideal fluid flow, properties unique to water (namely surface tension) are disregarded [3]. For simplicity's sake, all the boundaries were treated equally with zero-gradient conditions. That is, for a domain described by $\textbf{r}\in[x_{min}, x_{max}]\times[y_{min}, y_{max}]$, each boundary was subject to:
 
-$$\left.\frac{\partial u}{\partial x}\right|_{x_{min}, x_{max}} = \left.\frac{\partial u}{\partial y}\right|_{y_{min}, y_{max}} = 0$$
-$$\left.\frac{\partial v}{\partial x}\right|_{x_{min}, x_{max}} = \left.\frac{\partial v}{\partial y}\right|_{y_{min}, y_{max}} = 0$$
+$$\frac{\partial u}{\partial x}|_{x_{min}, x_{max}} = \frac{\partial u}{\partial y}|_{y_{min}, y_{max}} = 0$$
+$$\frac{\partial v}{\partial x}|_{x_{min}, x_{max}} = \frac{\partial v}{\partial y}|_{y_{min}, y_{max}} = 0$$
 
 This is true for all simulations in this project. Physically, this boundary condition indicates that the simulation domain is a small part of a larger body of water. This is implemented in the code by filling the ghost regions with copies of the nearest velocity values. This ensures the domain's edges are 'flat.' Other boundary conditions could be considered in the future, for example no-slip conditions (velocity perpendicular to surfaces is always 0), reflecting boundaries (the ghost regions are filled with 'mirror images' of neighboring cells, making the derivatives equal and opposite), or Dirichlet conditions (velocities at the boundaries are constant). While these other types of boundary conditions are interesting, the focus of this project is on parallel performance. Additionally, external forces are applied to many of the simulations. These are treated as constant background forces like gravity, or a 'constant wind' which shifts flow preferentially in one direction. These are static background fields that always act on the fluid flow. A time-dependent scheme could be implemented to drive turbulence, or perturb the fluid in numerous ways, but for simplicity, these time-dependent external forces were omitted from this project.
 
 ### *Finite Difference Stencil*
 The incompressible Navier-Stokes equations are vector equations, so it is natural to use an upwind Finite difference stencil. Let $w_k$ represent the value of a field at spatial cell center $z_k$ with uniform cell width $\Delta z$. The three-point, second-order accurate, one-sided stencils of first and second derivatives are: 
 
-$$\bigl[\frac{\partial w}{\partial z}\bigr]_k^+=\frac{1}{2*\Delta z}(3w_k-4w_{k-1}+w_{k-2})$$
-$$\bigl[\frac{\partial w}{\partial z}\bigr]_k^-=-\frac{1}{2*\Delta z}(3w_k-4w_{k+1}+w_{k+2})$$
+$$[\frac{\partial w}{\partial z}]_k^+=\frac{1}{2*\Delta z}(3w_k-4w_{k-1}+w_{k-2})$$
+$$[\frac{\partial w}{\partial z}]_k^-=-\frac{1}{2*\Delta z}(3w_k-4w_{k+1}+w_{k+2})$$
 
-$$\bigl[\frac{\partial^2w}{\partial z^2}\bigr]_k^+=\frac{1}{\Delta z^2}(w_k-2w_{k-1}+w_{k-2})$$
-$$\bigl[\frac{\partial^2w}{\partial z^2}\bigr]_k^-=\frac{1}{\Delta z^2}(w_k-2w_{k+1}+w_{k+2})$$
+$$[\frac{\partial^2w}{\partial z^2}\bigr]_k^+=\frac{1}{\Delta z^2}(w_k-2w_{k-1}+w_{k-2})$$
+$$[\frac{\partial^2w}{\partial z^2}]_k^-=\frac{1}{\Delta z^2}(w_k-2w_{k+1}+w_{k+2})$$
 
 Upwind schemes require one-sided stencils. In theory, they stabilize the simulation in time, because 'information' travels along with velocity, and no 'information' from far upwind can reach any individual active cell. More specifically, if $w_k>0$, the positive stencils are used, and if $w_k<0$ the negative stencils are used. The above four equations can be described by two with the introduction of a new variable, $s=sgn(w_k)$. Note that these stencils are described here in 1D, but all fields and derivatives are 2D. Inside any individual cell, there are two signs calculated, one for the sign of velocity field in each Cartesian direction. This is especially important in simulations where vortices occur.
 
