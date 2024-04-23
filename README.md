@@ -44,15 +44,15 @@ $$ (\frac{\partial w}{\partial z})_{k+} = \frac{1}{2 \Delta z} (3w(k) - 4w(k-1) 
 
 $$ (\frac{\partial w}{\partial z})_{k-}=-\frac{1}{2 \Delta z} (3w(k) - 4w(k+1) + w(k+2)) $$
 
-$$ (\frac{\partial^2w}{\partial z^2})_{k+}=\frac{1}{\Delta z^2} (w(k) - 2w_(k-1) + w(k-2)) $$
+$$ (\frac{\partial^2w}{\partial z^2})_{k+}=\frac{1}{\Delta z^2} (w(k) - 2w(k-1) + w(k-2)) $$
 
-$$ (\frac{\partial^2w}{\partial z^2})_{k-}=\frac{1}{\Delta z^2} (w(k) - 2w_(k+1) + w(k+2)) $$
+$$ (\frac{\partial^2w}{\partial z^2})_{k-}=\frac{1}{\Delta z^2} (w(k) - 2w(k+1) + w(k+2)) $$
 
 Upwind schemes require one-sided stencils. In theory, they stabilize the simulation in time, because 'information' travels along with velocity, and no 'information' from far upwind can reach any individual active cell. More specifically, if $w_k>0$, the positive stencils are used, and if $w_k<0$ the negative stencils are used. The above four equations can be described by two with the introduction of a new variable, $s=sgn(w_k)$. Note that these stencils are described here in 1D, but all fields and derivatives are 2D. Inside any individual cell, there are two signs calculated, one for the sign of velocity field in each Cartesian direction. This is especially important in simulations where vortices occur.
 
-$$0 = (\frac{\partial w}{\partial z})_k = \frac{s}{2 \Delta z} (3w(k)-4w(k-s)+w(k-2s))$$
+$$(\frac{\partial w}{\partial z})_k = \frac{s}{2 \Delta z} (3w(k)-4w(k-s)+w(k-2s))$$
 
-$$0 = (\frac{\partial^2w}{\partial z^2})_k = \frac{1}{\Delta z^2} (w(k)-2w(k-s)+w(k-2s))$$
+$$(\frac{\partial^2w}{\partial z^2})_k = \frac{1}{\Delta z^2} (w(k)-2w(k-s)+w(k-2s))$$
 
 The incompressible Navier-Stokes equations are comprised of six terms. A time-dependent derivative, and five spatial derivatives. Each field $u$ and $v$ are updated via a simple linear timing update of $u_{n+1}=u_n + \Delta t (\text{stencil})$. Numerically, this is an unstable updating scheme. However, for small $\Delta t$, the results remain physical for long enough to perform the parallelization performance studies. The time step $\Delta t$ is also carefully chosen to satisfy the Courant-Friedrichs-Lewy condition [5]. In the code, each of the five spatial derivatives are stored in variables then summed over for the final update. This was done with OpenMP's implementation in mind, as each thread needs to privatize these terms to prevent unintentional communication between processes. 
 
