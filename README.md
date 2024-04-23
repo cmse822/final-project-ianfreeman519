@@ -40,13 +40,13 @@ This is true for all simulations in this project. Physically, this boundary cond
 ### *Finite Difference Stencil*
 The incompressible Navier-Stokes equations are vector equations, so it is natural to use an upwind Finite difference stencil. Let $w_k$ represent the value of a field at spatial cell center $z_k$ with uniform cell width $\Delta z$. The three-point, second-order accurate, one-sided stencils of first and second derivatives are: 
 
-$$ 0 = (\frac{\partial w}{\partial z})_{k+} = \frac{1}{2 \Delta z}(3w_k-4w_{k-1}+w_{k-2}) $$
+$$ 0 = (\frac{\partial w}{\partial z})_{+} = \frac{1}{2 \Delta z}(3w_k-4w_{k-1}+w_{k-2}) $$
 
-$$ 0 = (\frac{\partial w}{\partial z})_{k-}=-\frac{1}{2 \Delta z}(3w_k-4w_{k+1}+w_{k+2}) $$
+$$ 0 = (\frac{\partial w}{\partial z})_{-}=-\frac{1}{2 \Delta z}(3w_k-4w_{k+1}+w_{k+2}) $$
 
-$$ 0 = (\frac{\partial^2w}{\partial z^2})_{k+}=\frac{1}{\Delta z^2}(w_k-2w_{k-1}+w_{k-2}) $$
+$$ 0 = (\frac{\partial^2w}{\partial z^2})_{+}=\frac{1}{\Delta z^2}(w_k-2w_{k-1}+w_{k-2}) $$
 
-$$ 0 =(\frac{\partial^2w}{\partial z^2})_{k-}=\frac{1}{\Delta z^2}(w_k-2w_{k+1}+w_{k+2}) $$
+$$ 0 =(\frac{\partial^2w}{\partial z^2})_{-}=\frac{1}{\Delta z^2}(w_k-2w_{k+1}+w_{k+2}) $$
 
 Upwind schemes require one-sided stencils. In theory, they stabilize the simulation in time, because 'information' travels along with velocity, and no 'information' from far upwind can reach any individual active cell. More specifically, if $w_k>0$, the positive stencils are used, and if $w_k<0$ the negative stencils are used. The above four equations can be described by two with the introduction of a new variable, $s=sgn(w_k)$. Note that these stencils are described here in 1D, but all fields and derivatives are 2D. Inside any individual cell, there are two signs calculated, one for the sign of velocity field in each Cartesian direction. This is especially important in simulations where vortices occur.
 
