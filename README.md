@@ -40,7 +40,7 @@ This is true for all simulations in this project. Physically, this boundary cond
 ### *Finite Difference Stencil*
 The incompressible Navier-Stokes equations are vector equations, so it is natural to use an upwind Finite difference stencil. Let $w_k$ represent the value of a field at spatial cell center $z_k$ with uniform cell width $\Delta z$. The three-point, second-order accurate, one-sided stencils of first and second derivatives are: 
 
-$$\bigl[\frac{\partial w}{\partial z}\bigr]_k^+=\frac{1}{2 \Delta z}(3w_k-4w_{k-1}+w_{k-2})$$
+$$[\frac{\partial w}{\partial z}]_k^+=\frac{1}{2 \Delta z}(3w_k-4w_{k-1}+w_{k-2})$$
 
 $$\bigl[\frac{\partial w}{\partial z}\bigr]_k^-=-\frac{1}{2 \Delta z}(3w_k-4w_{k+1}+w_{k+2})$$
 
