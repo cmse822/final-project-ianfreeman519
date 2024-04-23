@@ -26,7 +26,7 @@ For a 2-dimensional fluid described by velocity vector $\textbf{u} = u \hat{\tex
 
 The $1/Re$ term represents the 'Reynold's number,' a dimensionless constant that represents how 'behaved' the flow is. Large Reynold's numbers indicate turbulent flow, and small Reynold's numbers indicate laminar flow. Typical Reynold's numbers for the simulations described in this project are very high, often reaching scales as large as $10^7$. This is because the simulation domains in this project are large, with high velocities. The Reynold's number is calculated locally at each time step, and $L$ is treated as the geometric mean of the full x and y domain lengths. Many of the simulations have $L=40$, with velocities reaching $10^2$ at simulation edges. The Reynolds number is calculated as:
 
-    $$Re=\frac{\rho |\textbf{u}| L}{\mu}$$
+$$Re=\frac{\rho |\textbf{u}| L}{\mu}$$
 
 ### *Physical Parameters, Boundary conditions, and external fields*
 This project was meant to simulate water flow in a variety of different conditions. For this reason, the density of all fluids in the resulting simulations are held at a constant $\rho=1000kg/m^3$, and the absolute (dynamic) viscosity is always $\mu=10^{-3}Pas$ (*all units in this project are SI*). These constants are properties of water at $20^oC$. Because the Navier-Stokes equations model ideal fluid flow, properties unique to water (namely surface tension) are disregarded [3]. For simplicity's sake, all the boundaries were treated equally with zero-gradient conditions. That is, for a domain described by $\textbf{r}\in[x_{min}, x_{max}]\times[y_{min}, y_{max}]$, each boundary was subject to:
