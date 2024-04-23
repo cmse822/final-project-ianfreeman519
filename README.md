@@ -26,33 +26,33 @@ For a 2-dimensional fluid described by velocity vector $\textbf{u} = u \hat{\tex
 
 The $1/Re$ term represents the 'Reynold's number,' a dimensionless constant that represents how 'behaved' the flow is. Large Reynold's numbers indicate turbulent flow, and small Reynold's numbers indicate laminar flow. Typical Reynold's numbers for the simulations described in this project are very high, often reaching scales as large as $10^7$. This is because the simulation domains in this project are large, with high velocities. The Reynold's number is calculated locally at each time step, and $L$ is treated as the geometric mean of the full x and y domain lengths. Many of the simulations have $L=40$, with velocities reaching $10^2$ at simulation edges. The Reynolds number is calculated as:
 
-$$Re=\frac{\rho |\textbf{u}| L}{\mu}$$
+    $$Re=\frac{\rho |\textbf{u}| L}{\mu}$$
 
 ### *Physical Parameters, Boundary conditions, and external fields*
 This project was meant to simulate water flow in a variety of different conditions. For this reason, the density of all fluids in the resulting simulations are held at a constant $\rho=1000kg/m^3$, and the absolute (dynamic) viscosity is always $\mu=10^{-3}Pas$ (*all units in this project are SI*). These constants are properties of water at $20^oC$. Because the Navier-Stokes equations model ideal fluid flow, properties unique to water (namely surface tension) are disregarded [3]. For simplicity's sake, all the boundaries were treated equally with zero-gradient conditions. That is, for a domain described by $\textbf{r}\in[x_{min}, x_{max}]\times[y_{min}, y_{max}]$, each boundary was subject to:
 
-$$\frac{\partial u}{\partial x}|{xmin, xmax} = \frac{\partial u}{\partial y}|{ymin, ymax} = 0$$
+    $$\frac{\partial u}{\partial x}|{xmin, xmax} = \frac{\partial u}{\partial y}|{ymin, ymax} = 0$$
 
-$$\frac{\partial v}{\partial x}|{xmin, xmax} = \frac{\partial v}{\partial y}|{xmin, xmax} = 0$$
+    $$\frac{\partial v}{\partial x}|{xmin, xmax} = \frac{\partial v}{\partial y}|{xmin, xmax} = 0$$
 
 This is true for all simulations in this project. Physically, this boundary condition indicates that the simulation domain is a small part of a larger body of water. This is implemented in the code by filling the ghost regions with copies of the nearest velocity values. This ensures the domain's edges are 'flat.' Other boundary conditions could be considered in the future, for example no-slip conditions (velocity perpendicular to surfaces is always 0), reflecting boundaries (the ghost regions are filled with 'mirror images' of neighboring cells, making the derivatives equal and opposite), or Dirichlet conditions (velocities at the boundaries are constant). While these other types of boundary conditions are interesting, the focus of this project is on parallel performance. Additionally, external forces are applied to many of the simulations. These are treated as constant background forces like gravity, or a 'constant wind' which shifts flow preferentially in one direction. These are static background fields that always act on the fluid flow. A time-dependent scheme could be implemented to drive turbulence, or perturb the fluid in numerous ways, but for simplicity, these time-dependent external forces were omitted from this project.
 
 ### *Finite Difference Stencil*
 The incompressible Navier-Stokes equations are vector equations, so it is natural to use an upwind Finite difference stencil. Let $w_k$ represent the value of a field at spatial cell center $z_k$ with uniform cell width $\Delta z$. The three-point, second-order accurate, one-sided stencils of first and second derivatives are: 
 
-$(\frac{\partial w}{\partial z})_k^+=\frac{1}{2 \Delta z}(3w_k-4w_{k-1}+w_{k-2})$
+    $$(\frac{\partial w}{\partial z})_{k+} = \frac{1}{2 \Delta z}(3w_k-4w_{k-1}+w_{k-2})$$
 
-$(\frac{\partial w}{\partial z})_k^-=-\frac{1}{2 \Delta z}(3w_k-4w_{k+1}+w_{k+2})$
+    $$(\frac{\partial w}{\partial z})_{k-}=-\frac{1}{2 \Delta z}(3w_k-4w_{k+1}+w_{k+2})$$
 
-$(\frac{\partial^2w}{\partial z^2})_k^+=\frac{1}{\Delta z^2}(w_k-2w_{k-1}+w_{k-2})$
+    $$(\frac{\partial^2w}{\partial z^2})_{k+}=\frac{1}{\Delta z^2}(w_k-2w_{k-1}+w_{k-2})$$
 
-$(\frac{\partial^2w}{\partial z^2})_k^-=\frac{1}{\Delta z^2}(w_k-2w_{k+1}+w_{k+2})$
+    $$(\frac{\partial^2w}{\partial z^2})_{k-}=\frac{1}{\Delta z^2}(w_k-2w_{k+1}+w_{k+2})$$
 
 Upwind schemes require one-sided stencils. In theory, they stabilize the simulation in time, because 'information' travels along with velocity, and no 'information' from far upwind can reach any individual active cell. More specifically, if $w_k>0$, the positive stencils are used, and if $w_k<0$ the negative stencils are used. The above four equations can be described by two with the introduction of a new variable, $s=sgn(w_k)$. Note that these stencils are described here in 1D, but all fields and derivatives are 2D. Inside any individual cell, there are two signs calculated, one for the sign of velocity field in each Cartesian direction. This is especially important in simulations where vortices occur.
 
-$$(\frac{\partial w}{\partial z})_k=\frac{s}{2 \Delta z}(3w_k-4w_{k-s}+w_{k-2s})$$
+    $$(\frac{\partial w}{\partial z})_k = \frac{s}{2 \Delta z} (3w_k-4w_{k-s}+w_{k-2s})$$
 
-$$(\frac{\partial^2w}{\partial z^2})_k=\frac{1}{\Delta z^2}(w_k-2w_{k-s}+w_{k-2s})$$
+    $$(\frac{\partial^2w}{\partial z^2})_k = \frac{1}{\Delta z^2} (w_k-2w_{k-s}+w_{k-2s})$$
 
 The incompressible Navier-Stokes equations are comprised of six terms. A time-dependent derivative, and five spatial derivatives. Each field $u$ and $v$ are updated via a simple linear timing update of $u_{n+1}=u_n + \Delta t (\text{stencil})$. Numerically, this is an unstable updating scheme. However, for small $\Delta t$, the results remain physical for long enough to perform the parallelization performance studies. The time step $\Delta t$ is also carefully chosen to satisfy the Courant-Friedrichs-Lewy condition [5]. In the code, each of the five spatial derivatives are stored in variables then summed over for the final update. This was done with OpenMP's implementation in mind, as each thread needs to privatize these terms to prevent unintentional communication between processes. 
 
