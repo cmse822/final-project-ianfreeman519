@@ -1,0 +1,241 @@
+# Running code with OMP_NUM_THREADS= 1
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 2
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 4
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 8
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 12
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 16
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 20
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 24
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 28
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+# Running code with OMP_NUM_THREADS= 32
+Simulating timestep 0 at time 0
+Simulating timestep 50 at time 0.005
+Simulating timestep 100 at time 0.01
+Simulating timestep 150 at time 0.015
+Simulating timestep 200 at time 0.02
+Simulating timestep 250 at time 0.025
+Simulating timestep 300 at time 0.03
+Simulating timestep 350 at time 0.035
+Simulating timestep 400 at time 0.04
+Simulating timestep 450 at time 0.045
+Simulating timestep 500 at time 0.05
+Simulating timestep 550 at time 0.055
+Simulating timestep 600 at time 0.06
+Simulating timestep 650 at time 0.065
+Simulating timestep 700 at time 0.07
+Simulating timestep 750 at time 0.075
+Simulating timestep 800 at time 0.08
+Simulating timestep 850 at time 0.085
+Simulating timestep 900 at time 0.09
+Simulating timestep 950 at time 0.095
+JobId=34461943 JobName=OMPNS
+   UserId=freem386(6187794) GroupId=pa(2003) MCS_label=N/A
+   Priority=41220 Nice=0 Account=general QOS=freem386
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:02:25 TimeLimit=03:59:00 TimeMin=N/A
+   SubmitTime=2024-04-22T11:40:57 EligibleTime=2024-04-22T11:40:57
+   AccrueTime=2024-04-22T11:40:57
+   StartTime=2024-04-22T11:40:59 EndTime=2024-04-22T15:39:59 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-04-22T11:40:59 Scheduler=Main
+   Partition=general-short AllocNode:Sid=gateway-02:117460
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=skl-053
+   BatchHost=skl-053
+   NumNodes=1 NumCPUs=32 NumTasks=1 CPUs/Task=32 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=32,mem=32G,node=1,billing=4980
+   AllocTRES=cpu=32,mem=32G,node=1,billing=4980
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=32 MinMemoryCPU=1G MinTmpDiskNode=0
+   Features=[intel14|intel16|intel18|(amr|acm)|nvf|nal|nif] DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/submission_omp.sb
+   WorkDir=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files
+   Comment=stdout=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34461943.out 
+   StdErr=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34461943.out
+   StdIn=/dev/null
+   StdOut=/mnt/ufs18/home-241/freem386/final-project-ianfreeman519/project_files/slurm-34461943.out
+   Power=
+   MailUser=freem386@msu.edu MailType=INVALID_DEPEND,BEGIN,END,FAIL,REQUEUE,STAGE_OUT
+   
+

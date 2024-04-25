@@ -1,0 +1,47 @@
+#!/bin/bash --login
+#SBATCH --time=03:59:00             # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --nodes=1                  # number of different nodes - could be an exact number or a range of nodes (same as -N)
+#SBATCH --ntasks=1                  # number of tasks - how many tasks (nodes) that you require (same as -n)
+#SBATCH --cpus-per-task=32           # number of CPUs (or cores) per task (same as -c)
+#SBATCH --mem-per-cpu=1G            # memory required per allocated CPU (or core) - amount of memory (in bytes)
+#SBATCH --job-name OMPNS      # you can give your job a name for easier identification (same as -J)
+#SBATCH --mail-user=freem386@msu.edu   # lists the email address to which emails are sent, with options defined by --mail-type
+#SBATCH --mail-type=ALL             # let me know when jobs start, end, or fail.
+
+
+########## Command Lines to Run ##########
+source ~/.bashrc
+
+g++ openmp_main.cpp -o simulateNS_omp -fopenmp
+
+for num in 1 2 4 8 12 16 20 24 28 32
+do
+    export OMP_NUM_THREADS=$num
+    echo "# Running code with OMP_NUM_THREADS=" $num
+    ./simulateNS_omp vortex250
+done
+
+# for num in 1 2 4 8 12 16 20 24 28 32
+# do
+#     export OMP_NUM_THREADS=$num
+#     echo "# Running code with OMP_NUM_THREADS=" $num
+#     ./simulateNS_omp vortex500
+# done
+
+# for num in 1 2 4 8 12 16 20 24 28 32
+# do
+#     export OMP_NUM_THREADS=$num
+#     echo "# Running code with OMP_NUM_THREADS=" $num
+#     ./simulateNS_omp vortex1000
+# done
+
+# for num in 1 2 4 8 12 16 20 24 28 32
+# for num in 2 4 8 12 16 20 24 28 32
+# do
+#     export OMP_NUM_THREADS=$num
+#     echo "# Running code with OMP_NUM_THREADS=" $num
+#     ./simulateNS_omp vortex2000
+# done
+
+scontrol show job $SLURM_JOB_ID     ### write job information to output file
+
